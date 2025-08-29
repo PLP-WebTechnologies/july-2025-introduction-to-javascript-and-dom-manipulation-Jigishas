@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Portfolio Tracker</title>
+    <link rel="stylesheet" href="styles.html">
+   
+</head>
+<body>
+    <div class="container">
+        <h1>📈 Trading Portfolio Tracker</h1>
+        
+        <!-- Dashboard Stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="total-value">$0</div>
+                <div>Portfolio Value</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="total-gain-loss">$0</div>
+                <div>Total P&L</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stock-count">0</div>
+                <div>Stocks Owned</div>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <!-- Add Stock Form -->
+            <div class="card">
+                <h3>📊 Add Stock to Portfolio</h3>
+                <div class="form-group">
+                    <label for="stock-symbol">Stock Symbol:</label>
+                    <input type="text" id="stock-symbol" placeholder="e.g., AAPL" maxlength="5">
+                </div>
+                <div class="form-group">
+                    <label for="shares">Number of Shares:</label>
+                    <input type="number" id="shares" placeholder="e.g., 100" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="buy-price">Purchase Price per Share:</label>
+                    <input type="number" id="buy-price" placeholder="e.g., 150.00" step="0.01" min="0.01">
+                </div>
+                <button onclick="addStock()" class="success">Add to Portfolio</button>
+                <button onclick="clearForm()">Clear Form</button>
+            </div>
+
+            <!-- Market Simulator -->
+            <div class="card">
+                <h3>🎯 Market Price Simulator</h3>
+                <div class="form-group">
+                    <label for="sim-symbol">Select Stock:</label>
+                    <select id="sim-symbol">
+                        <option value="">Choose a stock...</option>
+                    </select>
+                </div>
+                <div class="price-display" id="current-price">Select a stock to see price</div>
+                <button onclick="simulateMarketMovement()" id="simulate-btn" disabled>Simulate Market Movement</button>
+                <button onclick="startAutoSimulation()" id="auto-sim-btn">Start Auto-Simulation</button>
+                <button onclick="stopAutoSimulation()" id="stop-sim-btn" class="hidden danger">Stop Auto-Simulation</button>
+            </div>
+        </div>
+
+        <!-- Trading Education Section -->
+        <div class="trading-simulator">
+            <h3>📚 Trading Education Hub</h3>
+            <p>Learn key trading concepts by exploring different scenarios:</p>
+            <button onclick="showTradingTip()">Get Trading Tip</button>
+            <button onclick="calculateRiskReward()">Calculate Risk/Reward</button>
+            <button onclick="showMarketAnalysis()">Market Analysis</button>
+            <div id="education-content" style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; min-height: 50px;">
+                Click any button above to start learning!
+            </div>
+        </div>
+
+        <!-- Portfolio Display -->
+        <div class="card" style="margin-top: 30px;">
+            <h3>💼 Your Portfolio</h3>
+            <button onclick="sortPortfolio('symbol')" class="success">Sort by Symbol</button>
+            <button onclick="sortPortfolio('value')" class="success">Sort by Value</button>
+            <button onclick="clearPortfolio()" class="danger">Clear Portfolio</button>
+            <div id="portfolio-container" class="portfolio-grid">
+                <p style="text-align: center; color: #666; margin: 20px 0;">No stocks in portfolio. Add your first stock above!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js">
+      
